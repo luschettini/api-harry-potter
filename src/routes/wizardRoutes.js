@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const wizardController = require("../controllers/wizardController.js");
-const upload =
+const upload = require("../config/upload.js"); 
 
 // Defina as rotas para os wizards
 
@@ -74,7 +74,7 @@ router.get("/wizards/:id", wizardController.getWizard);
  *       201:
  *         description: Bruxo criado
  */
-router.post("/wizards", wizardController.createWizard);
+router.post("/wizards", upload.single("photo"), wizardController.createWizard);
 
 /**
  * @swagger
