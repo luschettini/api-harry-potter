@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const wizardController = require("../controllers/wizardController.js");
 const upload = require("../config/upload.js"); 
+const apiKeyMiddleware = require("../config/apiKey"); // 🔐
+
+router.use(apiKeyMiddleware); // 🔒 Aplica para todas as rotas abaixo
 
 // Defina as rotas para os wizards
 
@@ -120,6 +123,6 @@ router.put("/wizards/:id", wizardController.updateWizard);
  *       200:
  *         description: Bruxo deletado
  */
-router.delete("/wizards:id", wizardController.deleteWizard);
+router.delete("/wizards/:id", wizardController.deleteWizard);
 
 module.exports = router;
